@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   input: {
-    height: "15%",
+    height: "100%",
     width: "90%",
     marginBottom: "3%",
   },
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 8,
-    marginLeft: "5%",
+    marginLeft: "3%",
   },
   btn_text: {
     color: "white",
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   login: {
-    marginTop: "5%",
+    marginTop: "2%",
   },
 });
 

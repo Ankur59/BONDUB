@@ -1,15 +1,10 @@
-import {
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import styles from "./Form.style";
 import Input_BOX from "./Text_input";
 import Feather from "@expo/vector-icons/Feather";
 
-const Form = () => {
+const Details = () => {
   const [name, setname] = useState("");
   const [number, setnumber] = useState("");
   const [email, setemail] = useState("");
@@ -35,63 +30,74 @@ const Form = () => {
             <Text style={styles.signup_txt}>Signup</Text>
           </View>
           <View style={styles.input_parent}>
-            <Input_BOX
-              change={setname}
-              place="eg. Dr. Pankaj Kumar"
-              name={name}
-              security={false}
-              title="Full Name"
-            />
-            <Input_BOX
-              title="Phone Number"
-              change={setnumber}
-              security={false}
-              place="eg. 993574318"
-              name={number}
-            />
-            <Input_BOX
-              title="Email-ID"
-              change={setemail}
-              security={false}
-              place="eg. emailid@gmail.com"
-              name={email}
-            />
-            <Input_BOX
-              title="Password"
-              change={setpassword}
-              security={show}
-              place=""
-              name={password}
-              rightIcon={
-                <TouchableOpacity onPress={() => setshow(!show)}>
-                  <Feather
-                    name={show ? "eye-off" : "eye"}
-                    size={20}
-                    color="#66667A"
-                  />
-                </TouchableOpacity>
-              }
-            />
-
-            <Input_BOX
-              title="Confirm password"
-              change={setConfirmPassword}
-              security={show2}
-              place=""
-              name={confirmPassword}
-              rightIcon={
-                <TouchableOpacity onPress={() => setshow2(!show2)}>
-                  <Feather
-                    name={show2 ? "eye-off" : "eye"}
-                    size={20}
-                    color="#66667A"
-                  />
-                </TouchableOpacity>
-              }
-            />
-            <TouchableOpacity style={styles.button}>
-              <Text style={styles.btn_text}>Signup</Text>
-            </TouchableOpacity>
+            <View style={{ marginBottom: "2%", height: "15%", width: "90%" }}>
+              <Input_BOX
+                change={setname}
+                place="eg. Dr. Pankaj Kumar"
+                name={name}
+                security={false}
+                title="Full Name"
+              />
+            </View>
+            <View style={{ marginBottom: "2%", height: "15%", width: "90%" }}>
+              <Input_BOX
+                title="Phone Number"
+                change={setnumber}
+                security={false}
+                place="eg. 993574318"
+                name={number}
+              />
+            </View>
+            <View style={{ marginBottom: "2%", height: "15%", width: "90%" }}>
+              <Input_BOX
+                title="Email-ID"
+                change={setemail}
+                security={false}
+                place="eg. emailid@gmail.com"
+                name={email}
+              />
+            </View>
+            <View style={{ marginBottom: "2%", height: "15%", width: "90%" }}>
+              <Input_BOX
+                title="Password"
+                change={setpassword}
+                security={show}
+                place=""
+                name={password}
+                rightIcon={
+                  <TouchableOpacity onPress={() => setshow(!show)}>
+                    <Feather
+                      name={show ? "eye-off" : "eye"}
+                      size={20}
+                      color="#66667A"
+                    />
+                  </TouchableOpacity>
+                }
+              />
+            </View>
+            <View style={{ marginBottom: "2%", height: "15%", width: "90%" }}>
+              <Input_BOX
+                title="Confirm password"
+                change={setConfirmPassword}
+                security={show2}
+                place=""
+                name={confirmPassword}
+                rightIcon={
+                  <TouchableOpacity onPress={() => setshow2(!show2)}>
+                    <Feather
+                      name={show2 ? "eye-off" : "eye"}
+                      size={20}
+                      color="#66667A"
+                    />
+                  </TouchableOpacity>
+                }
+              />
+            </View>
+            <View style={{ marginBottom: "2%", height: "100%", width: "90%" }}>
+              <TouchableOpacity style={styles.button}>
+                <Text style={styles.btn_text}>Signup</Text>
+              </TouchableOpacity>
+            </View>
           </View>
           <View
             style={{
@@ -107,16 +113,22 @@ const Form = () => {
               <View style={styles.login}>
                 <Text style={{ color: "#A1A1B0", fontSize: 16 }}>
                   Already have an account?{" "}
-                  <Text style={{ color: "#047450" }}>Login</Text>
+                  <Text style={{ color: "#047450", cursor: "pointer" }}>
+                    Login
+                  </Text>
                 </Text>
               </View>
               {/*  */}
               <View style={styles.terms}>
                 <Text style={{ color: "#A1A1B0" }}>
                   By signing up you agree to our{" "}
-                  <Text style={{ color: "#4B3FF3" }}>terms & conditions</Text>{" "}
+                  <Text style={{ color: "#4B3FF3", cursor: "pointer" }}>
+                    terms & conditions
+                  </Text>{" "}
                   and our{" "}
-                  <Text style={{ color: "#4B3FF3" }}>privacy policy</Text>
+                  <Text style={{ color: "#4B3FF3", cursor: "pointer" }}>
+                    privacy policy
+                  </Text>
                 </Text>
               </View>
               {/*  */}
@@ -135,4 +147,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default Details;
