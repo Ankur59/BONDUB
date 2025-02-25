@@ -9,6 +9,9 @@ const Input_BOX = ({
   title,
   security,
   rightIcon,
+  height = "100%",
+  width = "80%",
+  paddingLeft = "2%",
 }: {
   name: string;
   change: (e: string) => void;
@@ -16,22 +19,25 @@ const Input_BOX = ({
   title: string;
   security: boolean;
   rightIcon?: React.ReactNode;
+  height?: number | `${number}%`;
+  width?: number | `${number}%`;
+  paddingLeft?: number | `${number}%`;
 }) => {
   const [focus, setfocus] = useState(false);
   return (
-    <View style={styles.input}>
+    <View style={[{ height, width }, styles.input]}>
       <View style={styles.header}>
         <Text style={styles.header_txt}>{title}</Text>
       </View>
       <View style={styles.Text_input_prnt}>
-        <View style={styles.Text_input}>
+        <View style={[focus ? styles.Text_input : styles.Text_input]}>
           <TextInput
             value={name}
             onChangeText={(e) => change(e)}
             placeholder={place}
             secureTextEntry={security}
             placeholderTextColor="#D3D3DA"
-            style={[focus ? styles.focused_main : styles.main]}
+            style={[focus ? styles.focused_main : styles.main, { paddingLeft }]}
             onFocus={() => setfocus(true)}
             onBlur={() => setfocus(false)}
           />

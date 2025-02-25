@@ -3,8 +3,9 @@ import React, { useState } from "react";
 import styles from "./Form.style";
 import Input_BOX from "./Text_input";
 import Feather from "@expo/vector-icons/Feather";
+import Button from "./Button";
 
-const Details = () => {
+const Form = () => {
   const [name, setname] = useState("");
   const [number, setnumber] = useState("");
   const [email, setemail] = useState("");
@@ -30,7 +31,14 @@ const Details = () => {
             <Text style={styles.signup_txt}>Signup</Text>
           </View>
           <View style={styles.input_parent}>
-            <View style={{ marginBottom: "2%", height: "15%", width: "90%" }}>
+            <View
+              style={{
+                marginBottom: "2%",
+                height: "15%",
+                width: "90%",
+                alignItems: "center",
+              }}
+            >
               <Input_BOX
                 change={setname}
                 place="eg. Dr. Pankaj Kumar"
@@ -39,7 +47,14 @@ const Details = () => {
                 title="Full Name"
               />
             </View>
-            <View style={{ marginBottom: "2%", height: "15%", width: "90%" }}>
+            <View
+              style={{
+                marginBottom: "2%",
+                height: "15%",
+                width: "90%",
+                alignItems: "center",
+              }}
+            >
               <Input_BOX
                 title="Phone Number"
                 change={setnumber}
@@ -48,7 +63,14 @@ const Details = () => {
                 name={number}
               />
             </View>
-            <View style={{ marginBottom: "2%", height: "15%", width: "90%" }}>
+            <View
+              style={{
+                marginBottom: "2%",
+                height: "15%",
+                width: "90%",
+                alignItems: "center",
+              }}
+            >
               <Input_BOX
                 title="Email-ID"
                 change={setemail}
@@ -57,7 +79,14 @@ const Details = () => {
                 name={email}
               />
             </View>
-            <View style={{ marginBottom: "2%", height: "15%", width: "90%" }}>
+            <View
+              style={{
+                marginBottom: "2%",
+                height: "15%",
+                width: "90%",
+                alignItems: "center",
+              }}
+            >
               <Input_BOX
                 title="Password"
                 change={setpassword}
@@ -75,7 +104,14 @@ const Details = () => {
                 }
               />
             </View>
-            <View style={{ marginBottom: "2%", height: "15%", width: "90%" }}>
+            <View
+              style={{
+                marginBottom: "2%",
+                height: "15%",
+                width: "90%",
+                alignItems: "center",
+              }}
+            >
               <Input_BOX
                 title="Confirm password"
                 change={setConfirmPassword}
@@ -93,10 +129,15 @@ const Details = () => {
                 }
               />
             </View>
-            <View style={{ marginBottom: "2%", height: "100%", width: "90%" }}>
-              <TouchableOpacity style={styles.button}>
-                <Text style={styles.btn_text}>Signup</Text>
-              </TouchableOpacity>
+            <View
+              style={{
+                marginBottom: "2%",
+                height: "100%",
+                width: "80%",
+                alignItems: "center",
+              }}
+            >
+              <Button text="Signup" />
             </View>
           </View>
           <View
@@ -147,4 +188,4 @@ const Details = () => {
   );
 };
 
-export default Details;
+export default Form;

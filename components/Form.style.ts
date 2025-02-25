@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   signup_txt: {
     fontSize: 40,
     fontWeight: "600",
-    marginLeft: "7%",
+    marginLeft: "14%",
   },
   input_parent: {
     height: "60%",
@@ -47,8 +47,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   input: {
-    height: "100%",
-    width: "90%",
     marginBottom: "3%",
   },
   button: {
@@ -58,7 +56,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 8,
-    marginLeft: "3%",
   },
   btn_text: {
     color: "white",
@@ -67,21 +64,21 @@ const styles = StyleSheet.create({
   header: {
     width: "100%",
     height: "30%",
+    backgroundColor: "rd",
   },
   header_txt: {
-    marginLeft: "3%",
     color: "#66667A",
   },
   Text_input_prnt: {
     backgroundColor: "lue",
     width: "100%",
     height: "70%",
-    marginLeft: "3%",
+    // marginLeft: "3%",
   },
   Text_input: {
     height: "90%",
     borderWidth: 1,
-    borderColor: "#A1A1B0",
+    borderColor: "#E6E6EA",
     justifyContent: "center",
     borderRadius: 8,
   },
@@ -89,13 +86,13 @@ const styles = StyleSheet.create({
     flex: 1,
     height: "100%",
     width: "100%",
-    paddingLeft: "2%",
+    borderColor: "#E6E6EA",
   },
   focused_main: {
     height: "100%",
     width: "100%",
-    paddingLeft: "2%",
     borderRadius: 8,
+    borderColor: "#E6E6EA",
   },
   bottom_area: {
     height: "100%",
@@ -114,9 +111,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     textAlign: "center",
   },
-  login: {
-    marginTop: "2%",
-  },
+  login: {},
 });
 
 export default styles;
