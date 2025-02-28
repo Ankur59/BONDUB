@@ -4,10 +4,8 @@ import styles from "./Form.style";
 import Input_BOX from "./Text_input";
 import Feather from "@expo/vector-icons/Feather";
 import Button from "./Button";
-import AddDoctorModal from "./AddDoctorModal";
-import AddNurseModal from "./AddNurse";
 
-const Form = () => {
+const Login = () => {
   const [name, setname] = useState("");
   const [number, setnumber] = useState("");
   const [email, setemail] = useState("");
@@ -15,13 +13,8 @@ const Form = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [show, setshow] = useState(false);
   const [show2, setshow2] = useState(false);
-  const [isModalVisible, setIsModalVisible] = useState(false);
   return (
     <View style={styles.Signup_container}>
-      <AddNurseModal
-        visible={isModalVisible}
-        onClose={() => setIsModalVisible(false)}
-      />
       <View style={styles.form_parent}>
         <View style={styles.form_container}>
           {/* This is just a empty view for top spacing */}
@@ -35,30 +28,15 @@ const Form = () => {
           ></View>
           {/* -- */}
           <View style={styles.signup}>
-            <Text style={styles.signup_txt}>Signup</Text>
+            <Text style={styles.signup_txt}>Login</Text>
           </View>
           <View style={styles.input_parent}>
             <View
               style={{
                 marginBottom: "2%",
-                height: "15%",
+                height: "30%",
                 width: "90%",
-                alignItems: "center",
-              }}
-            >
-              <Input_BOX
-                change={setname}
-                place="eg. Dr. Pankaj Kumar"
-                name={name}
-                security={false}
-                title="Full Name"
-              />
-            </View>
-            <View
-              style={{
-                marginBottom: "2%",
-                height: "15%",
-                width: "90%",
+
                 alignItems: "center",
               }}
             >
@@ -70,26 +48,11 @@ const Form = () => {
                 name={number}
               />
             </View>
+
             <View
               style={{
                 marginBottom: "2%",
-                height: "15%",
-                width: "90%",
-                alignItems: "center",
-              }}
-            >
-              <Input_BOX
-                title="Email-ID"
-                change={setemail}
-                security={false}
-                place="eg. emailid@gmail.com"
-                name={email}
-              />
-            </View>
-            <View
-              style={{
-                marginBottom: "2%",
-                height: "15%",
+                height: "30%",
                 width: "90%",
                 alignItems: "center",
               }}
@@ -114,37 +77,12 @@ const Form = () => {
             <View
               style={{
                 marginBottom: "2%",
-                height: "15%",
-                width: "90%",
-                alignItems: "center",
-              }}
-            >
-              <Input_BOX
-                title="Confirm password"
-                change={setConfirmPassword}
-                security={show2}
-                place=""
-                name={confirmPassword}
-                rightIcon={
-                  <TouchableOpacity onPress={() => setshow2(!show2)}>
-                    <Feather
-                      name={show2 ? "eye-off" : "eye"}
-                      size={20}
-                      color="#66667A"
-                    />
-                  </TouchableOpacity>
-                }
-              />
-            </View>
-            <View
-              style={{
-                marginBottom: "2%",
                 height: "100%",
                 width: "80%",
                 alignItems: "center",
               }}
             >
-              <Button action={()=>setIsModalVisible(!isModalVisible)} text="Signup" />
+              <Button height={"20%"} text="Login" />
             </View>
           </View>
           <View
@@ -156,30 +94,25 @@ const Form = () => {
               alignItems: "center",
             }}
           >
-            <View style={styles.bottom_area}>
+            <View
+              style={{
+                height: "29%",
+                width: "90%",
+                marginLeft: "5%",
+                flexDirection: "column",
+                justifyContent: "flex-start",
+                alignItems: "center",
+              }}
+            >
               {/*  */}
               <View style={styles.login}>
                 <Text style={{ color: "#A1A1B0", fontSize: 16 }}>
-                  Already have an account?{" "}
+                  Don't have an account?{" "}
                   <Text style={{ color: "#047450", cursor: "pointer" }}>
-                    Login
+                    Signup
                   </Text>
                 </Text>
               </View>
-              {/*  */}
-              <View style={styles.terms}>
-                <Text style={{ color: "#A1A1B0" }}>
-                  By signing up you agree to our{" "}
-                  <Text style={{ color: "#4B3FF3", cursor: "pointer" }}>
-                    terms & conditions
-                  </Text>{" "}
-                  and our{" "}
-                  <Text style={{ color: "#4B3FF3", cursor: "pointer" }}>
-                    privacy policy
-                  </Text>
-                </Text>
-              </View>
-              {/*  */}
             </View>
           </View>
         </View>
@@ -195,4 +128,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default Login;

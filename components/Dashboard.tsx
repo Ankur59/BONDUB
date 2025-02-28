@@ -11,12 +11,17 @@ import Dash_styles from "./Dashboard.style";
 import Octicons from "@expo/vector-icons/Octicons";
 import Feather from "@expo/vector-icons/Feather";
 import Cards from "./Cards";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 const Dashboard = () => {
   const [show, setshow] = useState(true);
   const widthAnim = useRef(new Animated.Value(15)).current;
   const anim = useRef(new Animated.Value(85)).current;
-  const [data, setdata] = useState();
+  const [data, setdata] = useState([]);
+  const [beds, setbeds] = useState([]);
+  const [doctors, setdoctors] = useState([]);
+  const [nurses, setnurses] = useState([]);
+  const [wards, setwards] = useState([]);
 
   const toggleSidebar = (value: boolean) => {
     Animated.timing(widthAnim, {
@@ -33,6 +38,22 @@ const Dashboard = () => {
       useNativeDriver: false,
     }).start();
     setshow(value);
+  };
+  const check = () => {
+    if (!beds && !doctors && !wards && !nurses) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+  const check_ward = () => {
+    if (wards.length === 0) {
+      console.log("working");
+      return false;
+    } else {
+      console.log("sdfjhsd");
+      return true;
+    }
   };
   return (
     <View style={Dash_styles.parent}>
@@ -220,10 +241,16 @@ const Dashboard = () => {
         </View>
         <View style={{ flex: 1 }}>
           <Cards
-            height={"50%"}
-            width={"50%"}
-            content={data}
+            height={"40%"}
+            width={"30%"}
+            content={data.length}
+            heading="Patients this week"
             title="Emergency"
+            flag={false}
+            icons={<Feather name="users" size={16} color="#A1A1B0" />}
+            type={false}
+            check={check_ward()}
+            message="Add wards to start adding beds"
           />
         </View>
       </Animated.View>
