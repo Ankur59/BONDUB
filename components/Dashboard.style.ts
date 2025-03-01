@@ -49,6 +49,7 @@ const Dash_styles = StyleSheet.create({
     height: "20%",
     backgroundColor: "#FCFCFD",
     borderTopLeftRadius: 8,
+    flexDirection :'row',
     borderTopRightRadius: 8,
     borderColor: "#E6E6EA",
     borderWidth: 1,
@@ -56,22 +57,22 @@ const Dash_styles = StyleSheet.create({
   card_body: {
     width: "100%",
     height: "80%",
-    backgroundColor: "yellow",
+    backgroundColor: "re",
     borderBottomRightRadius: 8,
     borderBottomLeftRadius: 8,
   },
   Heading_icon: {
-    height: "100%",
-    width: "40%",
-    backgroundColor: "pink",
+    height: "40%",
+    width: "30%",
+    backgroundColor: "pnk",
     flexDirection: "row",
-    justifyContent: "space-around",
+    paddingHorizontal:'2%'
   },
   icons: {
-    marginLeft: "4%",
+    marginLeft: "10%",
     height: "100%",
     width: "20%",
-    backgroundColor: "blue",
+    backgroundColor: "ble",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -81,7 +82,7 @@ const Dash_styles = StyleSheet.create({
     // backgroundColor: "blue",
     alignItems: "center",
     justifyContent: "center",
-    marginRight: "2%",
+    marginRight: "10%",
   },
   card_heading2: {
     width: "100%",
@@ -103,8 +104,22 @@ const Dash_styles = StyleSheet.create({
     height: "60%",
     width: "40%",
     backgroundColor: "yellow",
-    
   },
+  button_parent: {
+    height: "80%",
+    width: "95%",
+    backgroundColor: "ble",
+    alignSelf: "center",
+    alignItems: "center",
+  },
+  setting_parent: {
+    height: "5%",
+    width: "95%",
+    backgroundColor: "yellw",
+    alignItems: "center",
+    alignSelf: "center",
+  },
+  
 });
 
 export default Dash_styles;

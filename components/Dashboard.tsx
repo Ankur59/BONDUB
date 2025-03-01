@@ -6,23 +6,38 @@ import {
   Image,
   TextInput,
 } from "react-native";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Dash_styles from "./Dashboard.style";
 import Octicons from "@expo/vector-icons/Octicons";
 import Feather from "@expo/vector-icons/Feather";
-import Cards from "./Cards";
-import Ionicons from "@expo/vector-icons/Ionicons";
+import Buttons from "./Nav_Buttons";
+import Fontisto from "@expo/vector-icons/Fontisto";
+import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import Cards from "./cards/Cards";
+import { patients } from "../patients";
 
 const Dashboard = () => {
   const [show, setshow] = useState(true);
   const widthAnim = useRef(new Animated.Value(15)).current;
   const anim = useRef(new Animated.Value(85)).current;
-  const [data, setdata] = useState([]);
+  const [data, setdata] = useState("Overview");
   const [beds, setbeds] = useState([]);
   const [doctors, setdoctors] = useState([]);
   const [nurses, setnurses] = useState([]);
   const [wards, setwards] = useState([]);
+  const [Patients, setpatients] = useState(patients);
+  const [count, setcount] = useState(0);
 
+    useEffect(() => {
+      if (Patients.length > 0) {
+        setcount(Patients.filter((p) => p.category === "Critical").length);
+      }
+      console.log(Patients.name)
+    }, [Patients]);
+ console.log(count)
   const toggleSidebar = (value: boolean) => {
     Animated.timing(widthAnim, {
       toValue: value ? 13 : 0,
@@ -47,11 +62,10 @@ const Dashboard = () => {
     }
   };
   const check_ward = () => {
-    if (wards.length === 0) {
-      console.log("working");
+    if (patients.length === 0) {
       return false;
     } else {
-      console.log("sdfjhsd");
+      console.log("true")
       return true;
     }
   };
@@ -101,8 +115,121 @@ const Dashboard = () => {
             <Octicons name="sidebar-expand" size={22} color="#D3D3DA" />
           </TouchableOpacity>
         </View>
+        <View
+          style={{
+            padding: "2%",
+            backgroundColor: "rd",
+            width: "100%",
+            height: "5%",
+            justifyContent: "center",
+          }}
+        ></View>
+        <View style={Dash_styles.button_parent}>
+          <Buttons
+            icon={
+              <Feather
+                name="home"
+                size={20}
+                color={data === "Overview" ? "#3E32E4" : "#66667A"}
+              />
+            }
+            value="Overview"
+            state={setdata}
+            check={data}
+          />
+          <Buttons
+            icon={
+              <SimpleLineIcons
+                name="people"
+                size={20}
+                color={data === "Patients" ? "#3E32E4" : "#66667A"}
+              />
+            }
+            value="Patients"
+            state={setdata}
+            check={data}
+          />
+          <Buttons
+            icon={
+              <FontAwesome6
+                name="hospital"
+                size={20}
+                color={data === "Wards" ? "#3E32E4" : "#66667A"}
+              />
+            }
+            value="Wards"
+            state={setdata}
+            check={data}
+          />
+          <Buttons
+            icon={
+              <MaterialCommunityIcons
+                name="bed-outline"
+                size={20}
+                color={data === "Beds" ? "#3E32E4" : "#66667A"}
+              />
+            }
+            value="Beds"
+            state={setdata}
+            check={data}
+          />
+          <Buttons
+            icon={
+              <Fontisto
+                name="stethoscope"
+                size={20}
+                color={data === "Doctors" ? "#3E32E4" : "#66667A"}
+              />
+            }
+            value="Doctors"
+            state={setdata}
+            check={data}
+          />
+          <Buttons
+            icon={
+              <MaterialCommunityIcons
+                name="clipboard-plus-outline"
+                size={20}
+                color={data === "Nurses" ? "#3E32E4" : "#66667A"}
+              />
+            }
+            value="Nurses"
+            state={setdata}
+            check={data}
+          />
+          <Buttons
+            icon={
+              <MaterialIcons
+                name="notes"
+                size={20}
+                color={data === "Attendance" ? "#3E32E4" : "#66667A"}
+              />
+            }
+            value="Attendance"
+            state={setdata}
+            check={data}
+          />
+        </View>
+        <View style={Dash_styles.setting_parent}>
+          <Buttons
+            icon={
+              <MaterialCommunityIcons
+                name="nut"
+                size={20}
+                color={data === "Settings" ? "#3E32E4" : "#66667A"}
+              />
+            }
+            value="Settings"
+            state={setdata}
+            check={data}
+            height={"90%"}
+            width={"90%"}
+            padding={"0%"}
+            
+          />
+        </View>
       </Animated.View>
-
+      (
       <Animated.View
         style={{
           marginLeft: anim.interpolate({
@@ -110,14 +237,14 @@ const Dashboard = () => {
             outputRange: ["13%", "0%"],
           }),
           flex: 1,
-          backgroundColor: "red",
+          backgroundColor: "#FFFFFF",
         }}
       >
         <View
           style={{
             height: "10%",
             width: "100%",
-            backgroundColor: "#FAFAFF",
+            backgroundColor: "red",
             borderBottomColor: "#C9C9FD",
             borderBottomWidth: 1,
             flexDirection: "row",
@@ -157,6 +284,7 @@ const Dashboard = () => {
               }}
             />
           </View>
+
           <View style={Dash_styles.profile_parent}>
             <View style={Dash_styles.bell_parent}>
               <TouchableOpacity>
@@ -218,42 +346,92 @@ const Dashboard = () => {
           )}
         </View>
         {/* Empty View */}
-        <View
-          style={{
-            height: "7%",
-            width: "100%",
-            backgroundColor: "blue",
-            marginLeft: "7%",
-          }}
-        />
-        <View
-          style={{
-            height: "7%",
-            width: "100%",
-            backgroundColor: "yellow",
-            marginLeft: "7%",
-            justifyContent: "flex-end",
-          }}
-        >
-          <Text style={{ fontSize: 30, fontWeight: 500 }}>
-            Hospital Overview
-          </Text>
-        </View>
-        <View style={{ flex: 1 }}>
-          <Cards
-            height={"40%"}
-            width={"30%"}
-            content={data.length}
-            heading="Patients this week"
-            title="Emergency"
-            flag={false}
-            icons={<Feather name="users" size={16} color="#A1A1B0" />}
-            type={false}
-            check={check_ward()}
-            message="Add wards to start adding beds"
-          />
-        </View>
+        {data == "Overview" && (
+          <View
+            style={{ height: "90%", width: "100%", backgroundColor: "blue" }}
+          >
+            <View
+              style={{
+                height: "7%",
+                width: "100%",
+                // backgroundColor: "blue",
+                marginLeft: "7%",
+              }}
+            />
+            <View
+              style={{
+                height: "7%",
+                width: "100%",
+                // backgroundColor: "yellow",
+                marginLeft: "7%",
+                justifyContent: "flex-end",
+              }}
+            >
+              <Text style={{ fontSize: 30, fontWeight: 500 }}>
+                Hospital Overview
+              </Text>
+            </View>
+            <View
+              style={{
+                height: "86%",
+                width: "100%",
+                backgroundColor: "green",
+                flexDirection: "row",
+              }}
+            >
+              <View
+                style={{
+                  height: "100%",
+                  width: "50%",
+                  backgroundColor: "yellow",
+                }}
+              >
+                {/* <Cards
+                  height={"100%"}
+                  width={"100%"}
+                  content={patients.length}
+                  heading="Total Patients"
+                  icons={
+                    <MaterialCommunityIcons
+                      name="bed-outline"
+                      size={20}
+                      color="black"
+                    />
+                  }
+                  check={check_ward()}
+                  warning="Please add more details"
+                  count={patients.length}
+                  critical_count={count}
+                  name={Patients.name}
+                /> */}
+              </View>
+              <View
+                style={{
+                  height: "100%",
+                  width: "50%",
+                  backgroundColor: "red",
+                }}
+              >
+                <View
+                  style={{
+                    height: "50%",
+                    width: "100%",
+                    backgroundColor: "green",
+                  }}
+                ></View>
+                <View
+                  style={{
+                    height: "50%",
+                    width: "100%",
+                    backgroundColor: "blue",
+                  }}
+                ></View>
+              </View>
+            </View>
+          </View>
+        )}
       </Animated.View>
+      )
     </View>
   );
 };
