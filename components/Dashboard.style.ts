@@ -60,6 +60,7 @@ const Dash_styles = StyleSheet.create({
     backgroundColor: "re",
     borderBottomRightRadius: 8,
     borderBottomLeftRadius: 8,
+    overflow:'hidden'
   },
   Heading_icon: {
     height: "40%",

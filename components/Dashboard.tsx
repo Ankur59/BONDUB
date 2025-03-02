@@ -19,6 +19,15 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import Cards from "./cards/Cards";
 import { patients } from "../patients";
 
+interface Patient {
+  name: string;
+  locality: string;
+  wardNumber: number;
+  numBeds: number;
+  condition: string;
+  category?: string; // Add this if your data includes a category field
+}
+
 const Dashboard = () => {
   const [show, setshow] = useState(true);
   const widthAnim = useRef(new Animated.Value(15)).current;
@@ -28,16 +37,15 @@ const Dashboard = () => {
   const [doctors, setdoctors] = useState([]);
   const [nurses, setnurses] = useState([]);
   const [wards, setwards] = useState([]);
-  const [Patients, setpatients] = useState(patients);
+  const [Patients_data, setpatients] = useState<Patient[]>(patients);
   const [count, setcount] = useState(0);
 
-    useEffect(() => {
-      if (Patients.length > 0) {
-        setcount(Patients.filter((p) => p.category === "Critical").length);
-      }
-      console.log(Patients.name)
-    }, [Patients]);
- console.log(count)
+  useEffect(() => {
+    if (Patients_data.length > 0) {
+      setcount(Patients_data.filter((p) => p.category === "Critical").length);
+    }
+  }, [Patients_data]);
+  console.log(count);
   const toggleSidebar = (value: boolean) => {
     Animated.timing(widthAnim, {
       toValue: value ? 13 : 0,
@@ -65,7 +73,7 @@ const Dashboard = () => {
     if (patients.length === 0) {
       return false;
     } else {
-      console.log("true")
+      console.log("true");
       return true;
     }
   };
@@ -225,7 +233,6 @@ const Dashboard = () => {
             height={"90%"}
             width={"90%"}
             padding={"0%"}
-            
           />
         </View>
       </Animated.View>
@@ -384,26 +391,28 @@ const Dashboard = () => {
                   height: "100%",
                   width: "50%",
                   backgroundColor: "yellow",
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
               >
-                {/* <Cards
-                  height={"100%"}
-                  width={"100%"}
+                <Cards
+                  height={"95%"}
+                  width={"95%"}
                   content={patients.length}
                   heading="Total Patients"
+                  source={Patients_data}
                   icons={
                     <MaterialCommunityIcons
                       name="bed-outline"
                       size={20}
-                      color="black"
+                      color="#A1A1B0"
                     />
                   }
                   check={check_ward()}
                   warning="Please add more details"
                   count={patients.length}
                   critical_count={count}
-                  name={Patients.name}
-                /> */}
+                />{" "}
               </View>
               <View
                 style={{

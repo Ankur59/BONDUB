@@ -1,7 +1,22 @@
-import { View, Text, ViewStyle, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  ViewStyle,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 import React from "react";
 import Dash_styles from "../Dashboard.style";
 import PatientCard from "../patients_Cards";
+
+interface Patient {
+  name: string;
+  locality: string;
+  wardNumber: number;
+  numBeds: number;
+  condition: string;
+  category: string;
+}
 
 interface CardsProps {
   height: ViewStyle["height"];
@@ -13,11 +28,7 @@ interface CardsProps {
   warning?: string;
   count?: number;
   critical_count: number;
-  name: string;
-  area: string;
-  ward: number;
-  bed: number;
-  status: string;
+  source: Patient[];
 }
 
 const Cards = ({
@@ -30,11 +41,7 @@ const Cards = ({
   warning,
   count,
   critical_count,
-  name,
-  area,
-  ward,
-  bed,
-  status,
+  source,
 }: CardsProps) => {
   return (
     <View
@@ -111,33 +118,117 @@ const Cards = ({
         {check ? (
           <View
             style={{
-              height: "10%",
+              height: "100%",
               width: "100%",
-              backgroundColor: "#FCFCFD",
-              flexDirection: "row",
-              justifyContent: "space-around",
+              backgroundColor: "#FFFFFF",
               alignItems: "center",
+              borderRadius: 8,
             }}
           >
-            <View>
-              <Text style={{ color: "#A1A1B0" }}>Name</Text>
+            <View
+              style={{
+                width: "100%",
+                height: "10%",
+                padding: 10,
+                backgroundColor: "#FCFCFD",
+                alignItems: "center",
+              }}
+            >
+              <View
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  backgroundColor: "yelow",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <View
+                  style={{
+                    height: "100%",
+                    width: "25%",
+
+                    backgroundColor: "rd",
+                    justifyContent: "center",
+                    marginLeft: "1%",
+                  }}
+                >
+                  <Text style={{ color: "#A1A1B0" }}>Name</Text>
+                </View>
+                <View
+                  style={{
+                    height: "100%",
+                    width: "25%",
+                    alignItems: "center",
+                    backgroundColor: "rd",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Text style={{ color: "#A1A1B0" }}>Ward</Text>
+                </View>
+                <View
+                  style={{
+                    height: "100%",
+                    width: "25%",
+                    alignItems: "center",
+                    backgroundColor: "rd",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Text style={{ color: "#A1A1B0" }}>Bed</Text>
+                </View>
+                <View
+                  style={{
+                    height: "100%",
+                    width: "25%",
+                    alignItems: "center",
+                    backgroundColor: "re",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Text style={{ color: "#A1A1B0" }}>Status</Text>
+                </View>
+              </View>
             </View>
-            <View>
-              <Text style={{ color: "#A1A1B0" }}>Ward</Text>
-            </View>
-            <View>
-              <Text style={{ color: "#A1A1B0" }}>Bed</Text>
-            </View>
-            <View>
-              <Text style={{ color: "#A1A1B0" }}>Status</Text>
-            </View>
-            <PatientCard
-              name={name}
-              area={area}
-              ward={ward}
-              bed={bed}
-              status={status}
-            />
+            {source.map((patient, index) => (
+              <PatientCard
+                key={index}
+                Name={patient.name}
+                area={patient.locality}
+                ward={patient.wardNumber}
+                bed={patient.numBeds}
+                condition={patient.category}
+              />
+            ))}
+            {source.length > 8 && (
+              <View
+                style={{
+                  height: "10%",
+                  width: "100%",
+                  backgroundColor: "white",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  position: "absolute",
+                  bottom: 0,
+                }}
+              >
+                <TouchableOpacity
+                  style={{
+                    height: "70%",
+                    width: "70%",
+                    backgroundColor: "white",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    borderWidth: 1,
+                    borderColor: "#D3D3DA",
+                    borderRadius: 6,
+                  }}
+                >
+                  <Text>See All patients</Text>
+                </TouchableOpacity>
+              </View>
+            )}
           </View>
         ) : (
           <View
