@@ -3,15 +3,13 @@ import React from "react";
 
 interface PatientCardProps {
   Name: string;
-  area: string;
   ward: number;
   bed: number;
   condition: string;
 }
 
-const PatientCard: React.FC<PatientCardProps> = ({
+const Mini_Cards: React.FC<PatientCardProps> = ({
   Name,
-  area,
   ward,
   bed,
   condition,
@@ -20,8 +18,7 @@ const PatientCard: React.FC<PatientCardProps> = ({
     <View
       style={{
         width: "100%",
-        height: "10%",
-        padding: 10,
+        height: "24%",
         backgroundColor: "#FFFFFF",
         alignItems: "center",
         borderBottomWidth: 1,
@@ -34,7 +31,7 @@ const PatientCard: React.FC<PatientCardProps> = ({
         style={{
           width: "100%",
           height: "100%",
-          backgroundColor: "ble",
+          backgroundColor: "bue",
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
@@ -45,13 +42,12 @@ const PatientCard: React.FC<PatientCardProps> = ({
             flexDirection: "column",
             height: "100%",
             width: "25%",
-            backgroundColor: "red",
+            backgroundColor: "re",
             marginLeft: "1%",
             justifyContent: "center",
           }}
         >
           <Text style={{ color: "#2A2A32", fontSize: 17 }}>{Name}</Text>
-          <Text style={{ color: "#A1A1B0", fontSize: 13 }}>{area}</Text>
         </View>
         <View
           style={{
@@ -95,6 +91,7 @@ const PatientCard: React.FC<PatientCardProps> = ({
               alignItems: "center",
               justifyContent: "center",
               borderRadius: 6,
+              marginVertical:'10%'
             }}
           >
             <Text style={{ color: condition == "Critical" ? "red" : "green" }}>
@@ -107,4 +104,4 @@ const PatientCard: React.FC<PatientCardProps> = ({
   );
 };
 
-export default PatientCard;
+export default Mini_Cards;

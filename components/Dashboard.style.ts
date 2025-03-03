@@ -47,9 +47,9 @@ const Dash_styles = StyleSheet.create({
   card_heading: {
     width: "100%",
     height: "20%",
-    backgroundColor: "#FCFCFD",
+    backgroundColor: "rd",
     borderTopLeftRadius: 8,
-    flexDirection :'row',
+    flexDirection: "row",
     borderTopRightRadius: 8,
     borderColor: "#E6E6EA",
     borderWidth: 1,
@@ -57,17 +57,25 @@ const Dash_styles = StyleSheet.create({
   card_body: {
     width: "100%",
     height: "80%",
-    backgroundColor: "re",
+    backgroundColor: "ed",
     borderBottomRightRadius: 8,
     borderBottomLeftRadius: 8,
-    overflow:'hidden'
+    overflow: "hidden",
+  },
+  card_body2: {
+    width: "100%",
+    height: "80%",
+    backgroundColor: "white",
+    borderBottomRightRadius: 8,
+    borderBottomLeftRadius: 8,
+    overflow: "hidden",
   },
   Heading_icon: {
     height: "40%",
     width: "30%",
-    backgroundColor: "pnk",
+    backgroundColor: "pink",
     flexDirection: "row",
-    paddingHorizontal:'2%'
+    paddingHorizontal: "2%",
   },
   icons: {
     marginLeft: "10%",
@@ -84,22 +92,28 @@ const Dash_styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginRight: "10%",
+    marginLeft: "5%",
   },
   card_heading2: {
     width: "100%",
-    height: "40%",
-    backgroundColor: "#FCFCFD",
+    height: "23%",
+    backgroundColor: "ed",
     borderTopLeftRadius: 8,
+    flexDirection: "row",
     borderTopRightRadius: 8,
     borderColor: "#E6E6EA",
     borderWidth: 1,
+    alignItems: "center",
+    justifyContent: "space-between",
   },
   Heading_icon2: {
-    height: "40%",
-    width: "40%",
+    height: "70%",
+    width: "50%",
     backgroundColor: "pink",
+    alignSelf: "center",
+    justifyContent: "space-between",
     flexDirection: "row",
-    justifyContent: "space-around",
+    // paddingRight: "17%",
   },
   count: {
     height: "60%",
@@ -120,7 +134,6 @@ const Dash_styles = StyleSheet.create({
     alignItems: "center",
     alignSelf: "center",
   },
-  
 });
 
 export default Dash_styles;

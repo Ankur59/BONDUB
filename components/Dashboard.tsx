@@ -16,8 +16,11 @@ import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import AntDesign from "@expo/vector-icons/AntDesign";
 import Cards from "./cards/Cards";
-import { patients } from "../patients";
+import { patients } from "../types";
+import Small from "./cards/small_cards";
+import NursesPage from "./Nurses";
 
 interface Patient {
   name: string;
@@ -25,26 +28,30 @@ interface Patient {
   wardNumber: number;
   numBeds: number;
   condition: string;
-  category?: string; // Add this if your data includes a category field
+  category?: string;
 }
 
 const Dashboard = () => {
   const [show, setshow] = useState(true);
   const widthAnim = useRef(new Animated.Value(15)).current;
   const anim = useRef(new Animated.Value(85)).current;
-  const [data, setdata] = useState("Overview");
+  const [data, setdata] = useState("Nurses");
   const [beds, setbeds] = useState([]);
-  const [doctors, setdoctors] = useState([]);
-  const [nurses, setnurses] = useState([]);
+  const [doctors, setdoctors] = useState(["pankaj"]);
+  const [nurses, setnurses] = useState(["Suman"]);
   const [wards, setwards] = useState([]);
   const [Patients_data, setpatients] = useState<Patient[]>(patients);
   const [count, setcount] = useState(0);
+  const [Critical, setCritical] = useState<Patient[] | undefined>([]);
 
   useEffect(() => {
-    if (Patients_data.length > 0) {
-      setcount(Patients_data.filter((p) => p.category === "Critical").length);
-    }
+    const criticalPatients = Patients_data.filter(
+      (p) => p.category?.toLowerCase() === "critical"
+    );
+    setcount(criticalPatients.length);
+    setCritical(criticalPatients);
   }, [Patients_data]);
+
   console.log(count);
   const toggleSidebar = (value: boolean) => {
     Animated.timing(widthAnim, {
@@ -389,7 +396,7 @@ const Dashboard = () => {
               <View
                 style={{
                   height: "100%",
-                  width: "50%",
+                  width: "65%",
                   backgroundColor: "yellow",
                   alignItems: "center",
                   justifyContent: "center",
@@ -404,7 +411,7 @@ const Dashboard = () => {
                   icons={
                     <MaterialCommunityIcons
                       name="bed-outline"
-                      size={20}
+                      size={10}
                       color="#A1A1B0"
                     />
                   }
@@ -413,11 +420,12 @@ const Dashboard = () => {
                   count={patients.length}
                   critical_count={count}
                 />{" "}
+                <View></View>
               </View>
               <View
                 style={{
                   height: "100%",
-                  width: "50%",
+                  width: "35%",
                   backgroundColor: "red",
                 }}
               >
@@ -426,8 +434,65 @@ const Dashboard = () => {
                     height: "50%",
                     width: "100%",
                     backgroundColor: "green",
+                    alignItems: "center",
                   }}
-                ></View>
+                >
+                  <Small
+                    height={"50%"}
+                    width={"80%"}
+                    heading="Emergency"
+                    icons={<AntDesign name="bells" size={17} color="black" />}
+                    critical_count={count}
+                    type={1}
+                    source={Critical}
+                    count={doctors.length}
+                  />
+                  <View
+                    style={{
+                      height: "50%",
+                      width: "100%",
+                      backgroundColor: "lue",
+
+                      alignItems: "center",
+                    }}
+                  >
+                    <View
+                      style={{
+                        height: "100%",
+                        width: "80%",
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        backgroundColor: "rd",
+                      }}
+                    >
+                      <Small
+                        height={"80%"}
+                        width={"40%"}
+                        heading="Doctors"
+                        icons={
+                          <AntDesign name="bells" size={17} color="black" />
+                        }
+                        critical_count={count}
+                        type={2}
+                        source={Critical}
+                        count={doctors.length}
+                      />
+                      <Small
+                        height={"80%"}
+                        width={"40%"}
+                        heading="Nurses"
+                        icons={
+                          <AntDesign name="bells" size={17} color="black" />
+                        }
+                        critical_count={count}
+                        type={2}
+                        source={Critical}
+                        count={nurses.length}
+                      />
+                    </View>
+                  </View>
+                </View>
                 <View
                   style={{
                     height: "50%",
@@ -439,6 +504,7 @@ const Dashboard = () => {
             </View>
           </View>
         )}
+        {data=="Nurses"&&<NursesPage/>}
       </Animated.View>
       )
     </View>
