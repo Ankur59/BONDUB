@@ -6,9 +6,9 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React from "react";
-import Dash_styles from "../Dashboard.style";
-import PatientCard from "../patients_Cards";
-import Mini_Cards from "../mini_cards";
+import Dash_styles from "../Styles/Dashboard.style";
+import PatientCard from "./patients_Cards";
+import Mini_Cards from "./mini_cards";
 
 const Small = ({
   height,

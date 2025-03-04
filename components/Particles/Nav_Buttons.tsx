@@ -1,6 +1,5 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
-import Feather from "@expo/vector-icons/Feather";
 interface CardsProps {
   value: string;
   state: React.Dispatch<React.SetStateAction<string>>;

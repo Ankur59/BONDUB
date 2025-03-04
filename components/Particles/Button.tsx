@@ -1,6 +1,6 @@
 import { TouchableOpacity, Text, DimensionValue } from "react-native";
 import React from "react";
-import styles from "./Form.style";
+import styles from "../Styles/Form.style";
 
 interface ButtonProps {
   text: string;

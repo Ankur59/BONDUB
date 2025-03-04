@@ -1,6 +1,6 @@
 import { View, Text, TextInput } from "react-native";
 import React, { useState } from "react";
-import styles from "./Form.style";
+import styles from "../Styles/Form.style";
 
 const Input_BOX = ({
   name,

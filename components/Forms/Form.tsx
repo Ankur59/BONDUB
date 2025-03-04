@@ -1,11 +1,11 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
-import styles from "./Form.style";
-import Input_BOX from "./Text_input";
+import styles from "../Styles/Form.style";
+import Input_BOX from "../Particles/Text_input";
 import Feather from "@expo/vector-icons/Feather";
-import Button from "./Button";
-import AddDoctorModal from "./AddDoctorModal";
-import AddNurseModal from "./AddNurse";
+import Button from "../Particles/Button";
+import AddDoctorModal from "../Doctors/Modals/AddDoctorModal";
+import AddNurseModal from "../Nurse_Components/Modal/AddNurse";
 
 const Form = () => {
   const [name, setname] = useState("");
@@ -144,7 +144,10 @@ const Form = () => {
                 alignItems: "center",
               }}
             >
-              <Button action={()=>setIsModalVisible(!isModalVisible)} text="Signup" />
+              <Button
+                action={() => setIsModalVisible(!isModalVisible)}
+                text="Signup"
+              />
             </View>
           </View>
           <View

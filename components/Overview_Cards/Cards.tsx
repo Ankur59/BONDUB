@@ -6,8 +6,8 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React from "react";
-import Dash_styles from "../Dashboard.style";
-import PatientCard from "../patients_Cards";
+import Dash_styles from "../Styles/Dashboard.style";
+import PatientCard from "../Cards/patients_Cards";
 
 interface Patient {
   name: string;

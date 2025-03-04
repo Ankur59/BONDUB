@@ -7,20 +7,24 @@ import {
   TextInput,
 } from "react-native";
 import React, { useState, useRef, useEffect } from "react";
-import Dash_styles from "./Dashboard.style";
+import Dash_styles from "./Styles/Dashboard.style";
 import Octicons from "@expo/vector-icons/Octicons";
 import Feather from "@expo/vector-icons/Feather";
-import Buttons from "./Nav_Buttons";
+import Buttons from "./Particles/Nav_Buttons";
 import Fontisto from "@expo/vector-icons/Fontisto";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import AntDesign from "@expo/vector-icons/AntDesign";
-import Cards from "./cards/Cards";
-import { patients } from "../types";
-import Small from "./cards/small_cards";
-import NursesPage from "./Nurses";
+import Cards from "./Cards/Cards";
+import { patients } from "../Data/types";
+import Small from "./Cards/Small_Card";
+import NursesPage from "./Nurse_Components/Nurses";
+import nursesdata from "../Data/nurse";
+import DoctorPage from "./Doctors/Doctors";
+import doctors_data from "../Data/Doctors";
+import DateNavigator from "./Date_picker";
 
 interface Patient {
   name: string;
@@ -37,13 +41,13 @@ const Dashboard = () => {
   const anim = useRef(new Animated.Value(85)).current;
   const [data, setdata] = useState("Nurses");
   const [beds, setbeds] = useState([]);
-  const [doctors, setdoctors] = useState(["pankaj"]);
-  const [nurses, setnurses] = useState(["Suman"]);
+  const [doctors, setdoctors] = useState(doctors_data);
+  const [nurses, setnurses] = useState(nursesdata);
   const [wards, setwards] = useState([]);
   const [Patients_data, setpatients] = useState<Patient[]>(patients);
   const [count, setcount] = useState(0);
   const [Critical, setCritical] = useState<Patient[] | undefined>([]);
-
+  const [selectedDate, setSelectedDate] = useState(new Date());
   useEffect(() => {
     const criticalPatients = Patients_data.filter(
       (p) => p.category?.toLowerCase() === "critical"
@@ -55,7 +59,7 @@ const Dashboard = () => {
   console.log(count);
   const toggleSidebar = (value: boolean) => {
     Animated.timing(widthAnim, {
-      toValue: value ? 13 : 0,
+      toValue: value ? 15 : 0,
       duration: 300,
       useNativeDriver: false,
     }).start();
@@ -63,7 +67,7 @@ const Dashboard = () => {
   };
   const togglemain = (value: boolean) => {
     Animated.timing(anim, {
-      toValue: value ? 87 : 100,
+      toValue: value ? 85 : 100,
       duration: 300,
       useNativeDriver: false,
     }).start();
@@ -243,7 +247,7 @@ const Dashboard = () => {
           />
         </View>
       </Animated.View>
-      (
+
       <Animated.View
         style={{
           marginLeft: anim.interpolate({
@@ -504,9 +508,12 @@ const Dashboard = () => {
             </View>
           </View>
         )}
-        {data=="Nurses"&&<NursesPage/>}
+        {data == "Nurses" && <NursesPage Nurse_Data={nurses} />}
+        {data == "Doctors" && <DoctorPage Doctor_data={doctors} />}
+        {data == "Attendance" && (
+          <DateNavigator onDateChange={setSelectedDate} />
+        )}
       </Animated.View>
-      )
     </View>
   );
 };

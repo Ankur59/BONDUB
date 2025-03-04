@@ -1,10 +1,10 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
-import styles from "./Form.style";
-import Input_BOX from "./Text_input";
-import { countries } from "@/Data";
+import styles from "../Styles/Form.style";
+import Input_BOX from "../Particles/Text_input";
+import { countries } from "@/Data/Data";
 import { Picker } from "@react-native-picker/picker";
-import Button from "./Button";
+import Button from "../Particles/Button";
 
 const Details = () => {
   const [Hospital, setHospital] = useState<string>("");
@@ -336,7 +336,7 @@ const Details = () => {
 
       <View style={styles.img_parent}>
         <Image
-          source={require("../assets/images/login-illustration.jpg")}
+          source={require("../../assets/images/login-illustration.jpg")}
           style={styles.img_style}
         />
       </View>

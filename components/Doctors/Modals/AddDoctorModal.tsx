@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, Modal } from "react-native";
 import React, { useState } from "react";
-import Input_BOX from "./Text_input";
-import Button from "./Button";
+import Input_BOX from "../../Particles/Text_input";
+import Button from "../../Particles/Button";
 import { StyleSheet } from "react-native";
 import Feather from "@expo/vector-icons/Feather";
 
@@ -10,7 +10,7 @@ interface AddDoctorModalProps {
   onClose: () => void;
 }
 
-const AddNurseModal = ({ visible, onClose }: AddDoctorModalProps) => {
+const AddDoctorModal = ({ visible, onClose }: AddDoctorModalProps) => {
   const [name, setName] = useState("");
   const [number, setnumber] = useState("");
   const [email, setEmail] = useState("");
@@ -29,7 +29,7 @@ const AddNurseModal = ({ visible, onClose }: AddDoctorModalProps) => {
       <View style={styles.modalOverlay}>
         <View style={styles.modalContent}>
           <View style={styles.modalHeader}>
-            <Text style={styles.modalTitle}>Add Nurse</Text>
+            <Text style={styles.modalTitle}>Add doctor</Text>
             <TouchableOpacity onPress={onClose} style={styles.closeButton}>
               <Feather name="x" size={24} color="#66667A" />
             </TouchableOpacity>
@@ -161,4 +161,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddNurseModal;
+export default AddDoctorModal;

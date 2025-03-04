@@ -1,9 +1,9 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
-import styles from "./Form.style";
-import Input_BOX from "./Text_input";
+import styles from "../Styles/Form.style";
+import Input_BOX from "../Particles/Text_input";
 import Feather from "@expo/vector-icons/Feather";
-import Button from "./Button";
+import Button from "../Particles/Button";
 
 const Login = () => {
   const [name, setname] = useState("");
