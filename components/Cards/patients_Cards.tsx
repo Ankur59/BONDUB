@@ -45,7 +45,7 @@ const PatientCard: React.FC<PatientCardProps> = ({
             flexDirection: "column",
             height: "100%",
             width: "25%",
-            backgroundColor: "red",
+            backgroundColor: "rd",
             marginLeft: "1%",
             justifyContent: "center",
           }}

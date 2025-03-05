@@ -15,7 +15,7 @@ const NursesPage = ({ Nurse_Data }) => {
       <AddNurseModal onClose={close} visible={ismodalopen} />
       {/* just empty div to maintain spacing */}
       <View
-        style={{ height: "6%", width: "100%", backgroundColor: "blue" }}
+        style={{ height: "6%", width: "100%" }}
       ></View>
       <View
         style={{
@@ -37,7 +37,7 @@ const NursesPage = ({ Nurse_Data }) => {
           <View
             style={{
               height: "100%",
-              width: "10%",
+              width: "18%",
               justifyContent: "center",
               marginLeft: "5%",
             }}

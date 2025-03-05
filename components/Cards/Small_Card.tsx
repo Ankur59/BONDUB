@@ -19,6 +19,8 @@ const Small = ({
   type,
   source,
   count,
+  check = true,
+  warning = "Please Enter all the data",
 }) => {
   return (
     <View
@@ -38,27 +40,33 @@ const Small = ({
           <View style={Dash_styles.icons}>
             <View
               style={{
-                height: "95%",
+                height: "80%",
                 width: "80%",
                 borderRadius: 6,
-                backgroundColor: "#fff",
+                backgroundColor: "re",
                 borderWidth: 1,
                 alignItems: "center",
                 justifyContent: "center",
                 borderColor: "#E6E6EA",
-                marginRight: 10,
               }}
             >
               {icons}
             </View>
           </View>
           <View style={Dash_styles.title_text}>
-            <Text style={{ color: "#A1A1B0", fontSize: 14, fontWeight: 200 }}>
+            <Text
+              style={{
+                color: "#A1A1B0",
+                fontSize: 14,
+                fontWeight: 200,
+                marginLeft: "2%",
+              }}
+            >
               {heading}
             </Text>
           </View>
         </View>
-        {critical_count > 0 && (
+        {critical_count > 0 && count > 0 && (
           <TouchableOpacity
             style={{
               height: 26,
@@ -76,10 +84,30 @@ const Small = ({
             <Text>View</Text>
           </TouchableOpacity>
         )}
+        {critical_count > 0 &&
+          count == 0 &&
+          heading != "Patients this week" && (
+            <TouchableOpacity
+              style={{
+                height: 26,
+                width: 48,
+                backgroundColor: "#FFF",
+                alignItems: "center",
+                justifyContent: "center",
+                marginRight: "2%",
+                borderWidth: 1,
+                borderColor: "#EBEBF1",
+                borderRadius: 4,
+              }}
+              activeOpacity={0.5}
+            >
+              <Text>Add</Text>
+            </TouchableOpacity>
+          )}
       </View>
 
       <View style={Dash_styles.card_body2}>
-        {type == 1 && (
+        {type == 1 && check == true && (
           <View
             style={{
               height: "100%",
@@ -91,7 +119,7 @@ const Small = ({
             <View
               style={{
                 width: "100%",
-                height: "23%",
+                height: "36%",
                 padding: 10,
                 backgroundColor: "yllow",
                 alignItems: "center",
@@ -112,8 +140,8 @@ const Small = ({
                 <View
                   style={{
                     height: "100%",
-                    width: "25%",
-                    backgroundColor: "rd",
+                    width: "20%",
+                    backgroundColor: "ed",
                     justifyContent: "center",
                     marginLeft: "1%",
                   }}
@@ -164,6 +192,19 @@ const Small = ({
                 condition={patient.category}
               />
             ))}
+          </View>
+        )}
+        {check == false && (
+          <View
+            style={{
+              height: "100%",
+              width: "100%",
+              backgroundColor: "yellow",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            {warning}
           </View>
         )}
         {type == 2 && (

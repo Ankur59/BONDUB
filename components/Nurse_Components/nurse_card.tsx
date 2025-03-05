@@ -9,10 +9,11 @@ const Nurse_Card = ({ name, date}) => {
     <View
       style={{
         width: "100%",
-        height: "10%",
+        height: "11%",
         padding: 2,
         backgroundColor: "yellw",
         alignItems: "flex-start",
+        marginBottom:'1%',
         justifyContent: "space-between",
         borderBottomColor: "#EBEBF1",
         borderBottomWidth: 1,
@@ -37,7 +38,7 @@ const Nurse_Card = ({ name, date}) => {
             justifyContent: "center",
           }}
         >
-          <Text style={{ fontSize: 18 }}>{name}</Text>
+          <Text style={{ fontSize: 16 }}>{name}</Text>
         </View>
         <View
           style={{
@@ -51,7 +52,7 @@ const Nurse_Card = ({ name, date}) => {
           <Picker
             style={{
               height: "80%",
-              width: "50%",
+              width: "35%",
               borderRadius: 30,
               fontSize: 15,
               paddingHorizontal: "4%",
@@ -72,10 +73,10 @@ const Nurse_Card = ({ name, date}) => {
             justifyContent: "center",
           }}
         >
-          <Text style={{ fontSize: 18 }}>{date}</Text>
+          <Text style={{ fontSize: 16 }}>{date}</Text>
         </View>
         <TouchableOpacity style={{ marginRight: "5%" }}>
-          <Entypo name="dots-three-vertical" size={24} color="black" />
+          <Entypo name="dots-three-vertical" size={19} color="black" />
         </TouchableOpacity>
       </View>
     </View>

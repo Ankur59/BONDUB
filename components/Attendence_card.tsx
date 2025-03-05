@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Picker } from "@react-native-picker/picker";
 import Entypo from "@expo/vector-icons/Entypo";
 
-const Doctor_card = ({ name, date,patients }) => {
+const Attendence_Card = ({ name, role, status, Login, Logout }) => {
   const [Status, setStatus] = useState(["Active", "Inactive"]);
   return (
     <View
@@ -11,9 +11,8 @@ const Doctor_card = ({ name, date,patients }) => {
         width: "100%",
         height: "14%",
         padding: 2,
-        backgroundColor: "yellw",
+        backgroundColor: "yelow",
         alignItems: "flex-start",
-        marginBottom:'1%',
         justifyContent: "space-between",
         borderBottomColor: "#EBEBF1",
         borderBottomWidth: 1,
@@ -23,7 +22,7 @@ const Doctor_card = ({ name, date,patients }) => {
         style={{
           width: "100%",
           height: "100%",
-          backgroundColor: "yelow",
+          backgroundColor: "ble",
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
@@ -32,9 +31,9 @@ const Doctor_card = ({ name, date,patients }) => {
         <View
           style={{
             height: "100%",
-            width: "25%",
+            width: "19%",
             alignItems: "center",
-            backgroundColor: "re",
+            backgroundColor: "rd",
             justifyContent: "center",
           }}
         >
@@ -43,55 +42,73 @@ const Doctor_card = ({ name, date,patients }) => {
         <View
           style={{
             height: "100%",
-            width: "16%",
+            width: "16.5%",
+            alignItems: "center",
+            backgroundColor: "rd",
+            justifyContent: "center",
+          }}
+        >
+          <Text style={{ fontSize: 17 }}>{role}</Text>
+        </View>
+        <View
+          style={{
+            height: "100%",
+            width: "20%",
             alignItems: "center",
             backgroundColor: "re",
             justifyContent: "center",
           }}
         >
-          <Text style={{ fontSize: 17 }}>{patients}</Text>
-        </View>
-        <View
-          style={{
-            height: "100%",
-            width: "25%",
-            alignItems: "center",
-            backgroundColor: "rd",
-            justifyContent: "center",
-          }}
-        >
-          <Picker
+          <View
             style={{
               height: "75%",
-              width: "35%",
+              width: "45%",
+              backgroundColor: status == "Present" ? "#F9F9FB" : "#FFF7F7",
+              alignItems: "center",
+              justifyContent: "center",
               borderRadius: 30,
-              fontSize: 15,
-              paddingHorizontal: "4%",
-              backgroundColor: "#F9F9FB",
+              borderWidth: 1,
+              borderColor: status == "Present" ? "#E6E6EA" : "#FEEAEA",
             }}
           >
-            {Status.map((Item, index) => {
-              return <Picker.Item key={index} value={Item} label={Item} />;
-            })}
-          </Picker>
+            <Text
+              style={{
+                fontSize: 17,
+                color: status == "Present" ? "#66667A" : "#DE2A29",
+              }}
+            >
+              {status}
+            </Text>
+          </View>
         </View>
         <View
           style={{
             height: "100%",
-            width: "23%",
+            width: "22.9%",
             alignItems: "center",
             backgroundColor: "rd",
             justifyContent: "center",
           }}
         >
-          <Text style={{ fontSize: 17 }}>{date}</Text>
+          <Text style={{ fontSize: 17 }}>{Login}</Text>
         </View>
-        <TouchableOpacity style={{ marginRight: "5%" }}>
-          <Entypo name="dots-three-vertical" size={24} color="black" />
+        <View
+          style={{
+            height: "100%",
+            width: "20%",
+            alignItems: "center",
+            backgroundColor: "ed",
+            justifyContent: "center",
+          }}
+        >
+          <Text style={{ fontSize: 17 }}>{Logout}</Text>
+        </View>
+        <TouchableOpacity style={{ position: "absolute", right: 0,marginRight:'2%' }}>
+          <Entypo name="dots-three-vertical" size={18} color="black" />
         </TouchableOpacity>
       </View>
     </View>
   );
 };
 
-export default Doctor_card;
+export default Attendence_Card;

@@ -20,26 +20,26 @@ const DateNavigator = ({ onDateChange }) => {
     onDateChange(newDate);
   };
 
-  useEffect(() => {
-    const formattedDate = format(selectedDate, "dd-MM-yyyy"); // Format the date
-    console.log(formattedDate); // Logs "2025-03-08" format
-  }, [selectedDate]);
+
 
   return (
     <View
       style={{
-        height: 60,
+        height: 50,
         width: 200,
-        backgroundColor: "red",
+        backgroundColor: "#FFF",
         flexDirection: "row",
         alignSelf: "center",
+        marginRight: "5%",
+        borderWidth: 1,
+        borderColor: "#E6E6EA",
       }}
     >
       <TouchableOpacity
         style={{
           height: "100%",
           width: "20%",
-          backgroundColor: "blue",
+          backgroundColor: "#F9F9FB",
           alignItems: "center",
           justifyContent: "center",
         }}
@@ -53,7 +53,6 @@ const DateNavigator = ({ onDateChange }) => {
         style={{
           height: "100%",
           width: "60%",
-          backgroundColor: "yellow",
           alignItems: "center",
           justifyContent: "center",
         }}
@@ -67,7 +66,7 @@ const DateNavigator = ({ onDateChange }) => {
         style={{
           height: "100%",
           width: "20%",
-          backgroundColor: "blue",
+          backgroundColor: "#F9F9FB",
           alignItems: "center",
           justifyContent: "center",
         }}

@@ -18,7 +18,7 @@ const Mini_Cards: React.FC<PatientCardProps> = ({
     <View
       style={{
         width: "100%",
-        height: "24%",
+        height: "34%",
         backgroundColor: "#FFFFFF",
         alignItems: "center",
         borderBottomWidth: 1,
@@ -47,7 +47,7 @@ const Mini_Cards: React.FC<PatientCardProps> = ({
             justifyContent: "center",
           }}
         >
-          <Text style={{ color: "#2A2A32", fontSize: 17 }}>{Name}</Text>
+          <Text style={{ color: "#2A2A32", fontSize: 14 }}>{Name}</Text>
         </View>
         <View
           style={{
@@ -69,7 +69,7 @@ const Mini_Cards: React.FC<PatientCardProps> = ({
             justifyContent: "center",
           }}
         >
-          <Text>{bed}</Text>
+          <Text style={{fontSize:14}}>{bed}</Text>
         </View>
         <View
           style={{
@@ -83,7 +83,7 @@ const Mini_Cards: React.FC<PatientCardProps> = ({
           {" "}
           <View
             style={{
-              height: "80%",
+              height: "60%",
               width: "60%",
               backgroundColor: condition == "Critical" ? "#FFF3F3" : "#E5FEF6",
               borderWidth: 1,

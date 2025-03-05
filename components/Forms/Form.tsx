@@ -15,13 +15,8 @@ const Form = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [show, setshow] = useState(false);
   const [show2, setshow2] = useState(false);
-  const [isModalVisible, setIsModalVisible] = useState(false);
   return (
     <View style={styles.Signup_container}>
-      <AddNurseModal
-        visible={isModalVisible}
-        onClose={() => setIsModalVisible(false)}
-      />
       <View style={styles.form_parent}>
         <View style={styles.form_container}>
           {/* This is just a empty view for top spacing */}
@@ -144,10 +139,7 @@ const Form = () => {
                 alignItems: "center",
               }}
             >
-              <Button
-                action={() => setIsModalVisible(!isModalVisible)}
-                text="Signup"
-              />
+              <Button text="Signup" />
             </View>
           </View>
           <View
@@ -190,7 +182,7 @@ const Form = () => {
 
       <View style={styles.img_parent}>
         <Image
-          source={require("../assets/images/login-illustration.jpg")}
+          source={require("../../assets/images/login-illustration.jpg")}
           style={styles.img_style}
         />
       </View>

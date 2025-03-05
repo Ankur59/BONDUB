@@ -111,6 +111,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     textAlign: "center",
   },
+  input_parent2: {
+    height: "25%",
+    width: "90%",
+    marginLeft: "5%",
+    backgroundColor: "rd",
+    alignItems: "center",
+  },
   login: {},
 });
 

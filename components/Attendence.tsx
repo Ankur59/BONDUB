@@ -1,20 +1,44 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
-import AddDoctorModal from "./Modals/AddDoctorModal";
-import Doctor_card from "./doctor_card";
+import DateNavigator from "./Date_picker";
+import { format } from "date-fns";
+import AttendanceData from "../Data/Attendence";
+import Attendence_Card from "./Attendence_card";
 
-const DoctorPage = ({ Doctor_data }) => {
+const Attendence = ({}) => {
   const [ismodalopen, setismodalopen] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [Atten_date, setatten_data] = useState(AttendanceData);
+  const [mapping_data, setmappingdata] = useState<
+    {
+      id: number;
+      name: string;
+      role: string;
+      date: string;
+      status: string;
+      inTime: string;
+      outTime: string;
+    }[]
+  >([]);
+  //
+  useEffect(() => {
+    const formattedDate = format(selectedDate, "dd-MM-yyyy"); // Format the date
+    const filtered = Atten_date.filter(
+      (item) => item.date === formattedDate.toString()
+    );
+    setmappingdata(filtered);
+  }, [selectedDate]);
+  //
   const close = () => {
     setismodalopen(!ismodalopen);
   };
+  console.log(mapping_data);
   return (
     <View style={{ backgroundColor: "yelow", height: "100%", width: "100%" }}>
-      <AddDoctorModal onClose={close} visible={ismodalopen} />
       {/* just empty div to maintain spacing */}
       <View
-        style={{ height: "6%", width: "100%" }}
+        style={{ height: "6%", width: "100%"}}
       ></View>
       <View
         style={{
@@ -36,74 +60,15 @@ const DoctorPage = ({ Doctor_data }) => {
           <View
             style={{
               height: "100%",
-              width: "17%",
+              width: "24%",
+              backgroundColor:'rd',
               justifyContent: "center",
               marginLeft: "5%",
             }}
           >
-            <Text style={{ fontSize: 30 }}>Doctors</Text>
+            <Text style={{ fontSize: 30 }}>Attendance</Text>
           </View>
-          {/* Add Button */}
-          <View
-            style={{
-              height: "100%",
-              width: "15%",
-              backgroundColor: "geen",
-              alignItems: "flex-end",
-              marginRight: "5%",
-              justifyContent: "center",
-            }}
-          >
-            <TouchableOpacity
-              style={{
-                height: "70%",
-                width: "65%",
-                backgroundColor: "white",
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center",
-                borderRadius: 8,
-                borderWidth: 1,
-
-                borderColor: "#E6E6EA",
-              }}
-              onPress={() => close()}
-            >
-              <View
-                style={{
-                  height: "90%",
-                  width: "80%",
-                  backgroundColor: "ble",
-                  flexDirection: "row",
-                }}
-              >
-                <View
-                  style={{
-                    height: "100%",
-                    width: "20%",
-                    backgroundColor: "yellw",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <AntDesign name="plus" size={17} color="black" />
-                </View>
-                <View
-                  style={{
-                    height: "100%",
-                    width: "90%",
-                    backgroundColor: "ble",
-                    alignItems: "flex-start",
-                    justifyContent: "center",
-                  }}
-                >
-                  <Text style={{ fontSize: 15, marginRight: "7%" }}>
-                    Add New
-                  </Text>
-                </View>
-              </View>
-            </TouchableOpacity>
-          </View>
+          <DateNavigator onDateChange={setSelectedDate} />
         </View>
       </View>
       <View
@@ -118,7 +83,7 @@ const DoctorPage = ({ Doctor_data }) => {
           style={{
             height: "60%",
             width: "90%",
-            backgroundColor: "re",
+            backgroundColor: "rd",
             marginTop: "4%",
             borderRadius: 8,
             borderWidth: 1,
@@ -149,7 +114,7 @@ const DoctorPage = ({ Doctor_data }) => {
               <View
                 style={{
                   height: "100%",
-                  width: "25%",
+                  width: "20%",
                   alignItems: "center",
                   backgroundColor: "rd",
                   justifyContent: "center",
@@ -160,31 +125,30 @@ const DoctorPage = ({ Doctor_data }) => {
               <View
                 style={{
                   height: "100%",
-                  width: "25%",
-                  alignItems: "center",
-                  backgroundColor: "re",
-                  justifyContent: "center",
-                }}
-              >
-                <Text style={{ color: "#A1A1B0", fontSize: 18 }}>Patients</Text>
-              </View>
-              <View
-                style={{
-                  height: "100%",
-                  width: "25%",
+                  width: "20%",
                   alignItems: "center",
                   backgroundColor: "rd",
                   justifyContent: "center",
                 }}
               >
-                <Text style={{ color: "#A1A1B0", fontSize: 18 }}>
-                  Account Status
-                </Text>
+                <Text style={{ color: "#A1A1B0", fontSize: 18 }}>Role</Text>
               </View>
               <View
                 style={{
                   height: "100%",
-                  width: "25%",
+                  width: "20%",
+                  alignItems: "center",
+                  backgroundColor: "rd",
+                  justifyContent: "center",
+                  marginRight: "5%",
+                }}
+              >
+                <Text style={{ color: "#A1A1B0", fontSize: 18 }}>Status</Text>
+              </View>
+              <View
+                style={{
+                  height: "100%",
+                  width: "20%",
                   alignItems: "center",
                   backgroundColor: "rd",
                   justifyContent: "center",
@@ -192,18 +156,33 @@ const DoctorPage = ({ Doctor_data }) => {
                 }}
               >
                 <Text style={{ color: "#A1A1B0", fontSize: 18 }}>
-                  Date Created
+                  Login-Time
+                </Text>
+              </View>
+              <View
+                style={{
+                  height: "100%",
+                  width: "20%",
+                  alignItems: "center",
+                  backgroundColor: "rd",
+                  justifyContent: "center",
+                  marginRight: "5%",
+                }}
+              >
+                <Text style={{ color: "#A1A1B0", fontSize: 18 }}>
+                  Logout-Time
                 </Text>
               </View>
             </View>
           </View>
-          {Doctor_data.map((item, index) => {
+          {mapping_data.map((item, index) => {
             return (
-              <Doctor_card
-                patients={item.numberOfPatients}
+              <Attendence_Card
+                Login={item.inTime}
+                Logout={item.outTime}
                 name={item.name}
-                date={item.joiningDate}
-                key={index}
+                role={item.role}
+                status={item.status}
               />
             );
           })}
@@ -213,4 +192,4 @@ const DoctorPage = ({ Doctor_data }) => {
   );
 };
 
-export default DoctorPage;
+export default Attendence;

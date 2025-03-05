@@ -51,6 +51,7 @@ const Cards = ({
             height,
             width,
             borderRadius: 8,
+            marginRight: "1%",
           },
         }).container
       }
@@ -232,7 +233,14 @@ const Cards = ({
           </View>
         ) : (
           <View
-            style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+            style={{
+              flex: 1,
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "white",
+              borderWidth: 1,
+              borderColor: "#EBEBF1",
+            }}
           >
             <Text style={{ color: "#A1A1B0" }}>{warning}</Text>
           </View>

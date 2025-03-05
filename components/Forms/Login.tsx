@@ -6,13 +6,9 @@ import Feather from "@expo/vector-icons/Feather";
 import Button from "../Particles/Button";
 
 const Login = () => {
-  const [name, setname] = useState("");
   const [number, setnumber] = useState("");
-  const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [show, setshow] = useState(false);
-  const [show2, setshow2] = useState(false);
   return (
     <View style={styles.Signup_container}>
       <View style={styles.form_parent}>
@@ -30,7 +26,7 @@ const Login = () => {
           <View style={styles.signup}>
             <Text style={styles.signup_txt}>Login</Text>
           </View>
-          <View style={styles.input_parent}>
+          <View style={styles.input_parent2}>
             <View
               style={{
                 marginBottom: "2%",
@@ -77,12 +73,12 @@ const Login = () => {
             <View
               style={{
                 marginBottom: "2%",
-                height: "100%",
+                height: "50%",
                 width: "80%",
                 alignItems: "center",
               }}
             >
-              <Button height={"20%"} text="Login" />
+              <Button height={"40%"} text="Login" />
             </View>
           </View>
           <View
@@ -96,9 +92,10 @@ const Login = () => {
           >
             <View
               style={{
-                height: "29%",
+                height: "70%",
                 width: "90%",
                 marginLeft: "5%",
+                backgroundColor: "rd",
                 flexDirection: "column",
                 justifyContent: "flex-start",
                 alignItems: "center",
@@ -120,7 +117,7 @@ const Login = () => {
 
       <View style={styles.img_parent}>
         <Image
-          source={require("../assets/images/login-illustration.jpg")}
+          source={require("../../assets/images/login-illustration.jpg")}
           style={styles.img_style}
         />
       </View>
