@@ -4,11 +4,29 @@ import {
   ViewStyle,
   StyleSheet,
   TouchableOpacity,
+  DimensionValue,
 } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Dash_styles from "../Styles/Dashboard.style";
 import PatientCard from "./patients_Cards";
 import Mini_Cards from "./mini_cards";
+
+interface CardsProps {
+  height: DimensionValue;
+  width: DimensionValue;
+  heading: string;
+  icons: JSX.Element;
+  critical_count: number;
+  type: number;
+  source: any[];
+  count: number;
+  check?: boolean;
+  warning?: string;
+  //
+  total_count?: number;
+  used?: number;
+  //
+}
 
 const Small = ({
   height,
@@ -19,21 +37,27 @@ const Small = ({
   type,
   source,
   count,
-  check = true,
-  warning = "Please Enter all the data",
-}) => {
+  check,
+  warning,
+  total_count,
+  used,
+}: CardsProps) => {
+  const [vacant, setvacant] = useState<Number>();
+  useEffect(() => {
+    if (total_count !== undefined && used !== undefined) {
+      const remain = total_count - used;
+      setvacant(remain);
+    }
+  }, [total_count, used]); // Remove `vacant` if not needed
+
   return (
     <View
-      style={
-        StyleSheet.create({
-          container: {
-            height,
-            width,
-            borderRadius: 8,
-            backgroundColor: "white",
-          },
-        }).container
-      }
+      style={{
+        height,
+        width,
+        borderRadius: 8,
+        backgroundColor: "white",
+      }}
     >
       <View style={Dash_styles.card_heading2}>
         <View style={Dash_styles.Heading_icon2}>
@@ -66,7 +90,7 @@ const Small = ({
             </Text>
           </View>
         </View>
-        {critical_count > 0 && count > 0 && (
+        {count > 0 && (
           <TouchableOpacity
             style={{
               height: 26,
@@ -84,9 +108,10 @@ const Small = ({
             <Text>View</Text>
           </TouchableOpacity>
         )}
-        {critical_count > 0 &&
-          count == 0 &&
-          heading != "Patients this week" && (
+        {count == 0 &&
+          (heading == "Nurses" ||
+            heading == "Wards" ||
+            heading == "Doctors") && (
             <TouchableOpacity
               style={{
                 height: 26,
@@ -107,7 +132,7 @@ const Small = ({
       </View>
 
       <View style={Dash_styles.card_body2}>
-        {type == 1 && check == true && (
+        {type == 1 && source.length != 0 && check == true && (
           <View
             style={{
               height: "100%",
@@ -194,20 +219,36 @@ const Small = ({
             ))}
           </View>
         )}
-        {check == false && (
+        {type == 1 && source.length != 0 && check == false && (
           <View
             style={{
-              height: "100%",
-              width: "100%",
-              backgroundColor: "yellow",
-              alignItems: "center",
-              justifyContent: "center",
+              height: "20%",
+              width: "20%",
+              position: "absolute",
+              bottom: 10,
+              left: 10,
             }}
           >
-            {warning}
+            <Text style={{ fontSize: 35 }}>0</Text>
           </View>
         )}
-        {type == 2 && (
+        {type == 1 && source.length == 0 && (
+          <View style={{ height: "100%", width: "100%" }}>
+            <Text
+              style={{
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                marginLeft: "2%",
+                marginBottom: "2%",
+                fontSize: 35,
+              }}
+            >
+              0
+            </Text>
+          </View>
+        )}
+        {type == 2 && check == true && (
           <View style={{ height: "100%", width: "100%" }}>
             <Text
               style={{
@@ -221,6 +262,127 @@ const Small = ({
             >
               {count}
             </Text>
+          </View>
+        )}
+        {type == 2 && check == false && (
+          <View
+            style={{
+              height: "80%",
+              width: "80%",
+              justifyContent: "center",
+              alignContent: "center",
+              alignSelf: "center",
+            }}
+          >
+            <Text
+              style={{
+                color: "#A1A1B0",
+                fontSize: 14,
+                textAlign: "center",
+              }}
+            >
+              {warning}
+            </Text>
+          </View>
+        )}
+        {type == 3 && (
+          <View
+            style={{ height: "100%", width: "100%", backgroundColor: "ble" }}
+          >
+            <View
+              style={{
+                height: "50%",
+                width: "20%",
+                backgroundColor: "rd",
+                position: "absolute",
+                bottom: 10,
+                left: 10,
+                flexDirection: "row",
+              }}
+            >
+              <View
+                style={{
+                  height: "100%",
+                  width: "55%",
+                  backgroundColor: "yelow",
+                }}
+              >
+                <View
+                  style={{
+                    height: "90%",
+                    width: "90%",
+                    position: "absolute",
+                    bottom: 0,
+                    right: 0,
+                    backgroundColor: "pnk",
+                    alignItems: "flex-end",
+                    justifyContent: "flex-end",
+                  }}
+                >
+                  <Text
+                    style={{
+                      fontSize: 50,
+                      lineHeight: 40,
+                    }}
+                  >
+                    {used}
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  height: "100%",
+                  width: "45%",
+                  backgroundColor: "white",
+                }}
+              >
+                <View
+                  style={{
+                    height: "40%",
+                    width: "60%",
+                    backgroundColor: "rd",
+                    position: "absolute",
+                    bottom: 0,
+                    left: 0,
+                    alignItems: "center",
+                    justifyContent: "flex-end",
+                  }}
+                >
+                  <Text style={{ fontSize: 20 }}>/50</Text>
+                </View>
+              </View>
+            </View>
+            {vacant !== undefined && Number(vacant) > 0 && (
+              <View
+                style={{
+                  height: "40%",
+                  width: "30%",
+                  backgroundColor: "yelow",
+                  position: "absolute",
+                  right: 0,
+                  bottom: 0,
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <View
+                  style={{
+                    height: "65%",
+                    width: "70%",
+                    backgroundColor: "#E5FEF6",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    borderWidth: 1,
+                    borderColor: "#C8E8DD",
+                    borderRadius: 8,
+                  }}
+                >
+                  <Text style={{ color: "#04A06D", fontSize: 17 }}>
+                    Vacant {Number(vacant)}
+                  </Text>
+                </View>
+              </View>
+            )}
           </View>
         )}
       </View>

@@ -18,7 +18,7 @@ import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Cards from "./Cards/Cards";
-import { patients } from "../Data/types";
+import { patients } from "../Data/patients";
 import Small from "./Cards/Small_Card";
 import NursesPage from "./Nurse_Components/Nurses";
 import nursesdata from "../Data/nurse";
@@ -39,18 +39,18 @@ const Dashboard = () => {
   const [show, setshow] = useState(true);
   const widthAnim = useRef(new Animated.Value(15)).current;
   const anim = useRef(new Animated.Value(85)).current;
-  const [data, setdata] = useState("Nurses");
-  const [beds, setbeds] = useState([1]);
+  const [data, setdata] = useState("Overview");
+  const [beds, setbeds] = useState([1, 2, 3, 4]);
   const [doctors, setdoctors] = useState(doctors_data);
   const [nurses, setnurses] = useState(nursesdata);
-  const [wards, setwards] = useState([]);
-  const [Patients_data, setpatients] = useState<Patient[]>(patients);
+  const [wards, setwards] = useState([1, 2, 3]);
+  const [Patients_data, setpatients] = useState(patients);
   const [count, setcount] = useState(0);
-  const [Critical, setCritical] = useState<Patient[] | undefined>([]);
+  const [Critical, setCritical] = useState<Patient[]>([]);
   const [patient_week, setpatient_week] = useState([]);
   useEffect(() => {
     const criticalPatients = Patients_data.filter(
-      (p) => p.category?.toLowerCase() === "critical"
+      (p) => (p.category || "").toLowerCase() === "critical"
     );
     setcount(criticalPatients.length);
     setCritical(criticalPatients);
@@ -73,23 +73,16 @@ const Dashboard = () => {
     }).start();
     setshow(value);
   };
-  const check = () => {
-    if (!beds && !doctors && !wards && !nurses) {
-      return false;
-    } else {
-      return true;
-    }
-  };
   const check_ward = () => {
     if (
-      doctors.length != 0 &&
-      wards.length != 0 &&
-      nurses.length != 0 &&
-      beds.length != 0
+      doctors.length === 0 ||
+      wards.length === 0 ||
+      nurses.length === 0 ||
+      beds.length === 0
     ) {
-      return true;
-    } else {
       return false;
+    } else {
+      return true;
     }
   };
   return (
@@ -466,8 +459,9 @@ const Dashboard = () => {
                       }
                       critical_count={count}
                       type={1}
+                      check={check_ward()}
                       source={Critical}
-                      count={doctors.length}
+                      count={Critical.length}
                     />
                   </View>
                   <View
@@ -497,9 +491,14 @@ const Dashboard = () => {
                         width={"100%"}
                         heading="Nurses"
                         icons={
-                          <AntDesign name="bells" size={17} color="black" />
+                          <MaterialCommunityIcons
+                            name="clipboard-plus"
+                            size={17}
+                            color="#A1A1B0"
+                          />
                         }
                         critical_count={count}
+                        check={true}
                         type={2}
                         source={Critical}
                         count={nurses.length}
@@ -528,6 +527,7 @@ const Dashboard = () => {
                             color="black"
                           />
                         }
+                        check={true}
                         critical_count={count}
                         type={2}
                         source={Critical}
@@ -555,12 +555,14 @@ const Dashboard = () => {
                     <Small
                       height={"92%"}
                       width={"98%"}
-                      heading="Emergency"
+                      heading="Beds"
                       icons={
                         <AntDesign name="bells" size={17} color="#A1A1B0" />
                       }
                       critical_count={count}
-                      type={1}
+                      type={3}
+                      total_count={50}
+                      used={patients.length}
                       source={Critical}
                       count={doctors.length}
                     />
@@ -596,7 +598,7 @@ const Dashboard = () => {
                         }
                         critical_count={count}
                         type={2}
-                        check={false}
+                        check={check_ward()}
                         warning="Add doctors, nurses, wards & beds first to start adding patients "
                         source={Critical}
                         count={patient_week.length}
@@ -627,7 +629,8 @@ const Dashboard = () => {
                         }
                         critical_count={count}
                         type={2}
-                        source={Critical}
+                        check={true}
+                        source={wards}
                         count={wards.length}
                       />{" "}
                     </View>

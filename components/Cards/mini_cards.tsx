@@ -41,7 +41,7 @@ const Mini_Cards: React.FC<PatientCardProps> = ({
           style={{
             flexDirection: "column",
             height: "100%",
-            width: "25%",
+            width: "20%",
             backgroundColor: "re",
             marginLeft: "1%",
             justifyContent: "center",

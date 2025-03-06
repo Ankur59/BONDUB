@@ -80,19 +80,35 @@ const Cards = ({
             </Text>
           </View>
         </View>
-        <View
-          style={{
-            height: "70%",
-            width: "20%",
-            alignItems: "flex-start",
-            justifyContent: "center",
-            position: "absolute",
-            left: 0,
-            bottom: 0,
-          }}
-        >
-          <Text style={{ fontSize: 70, marginLeft: "20%" }}>{count}</Text>
-        </View>
+        {check == true ? (
+          <View
+            style={{
+              height: "70%",
+              width: "20%",
+              alignItems: "flex-start",
+              justifyContent: "center",
+              position: "absolute",
+              left: 0,
+              bottom: 0,
+            }}
+          >
+            <Text style={{ fontSize: 70, marginLeft: "20%" }}>{count}</Text>
+          </View>
+        ) : (
+          <View
+            style={{
+              height: "70%",
+              width: "20%",
+              alignItems: "flex-start",
+              justifyContent: "center",
+              position: "absolute",
+              left: 0,
+              bottom: 0,
+            }}
+          >
+            <Text style={{ fontSize: 70, marginLeft: "20%" }}>0</Text>
+          </View>
+        )}
         {check === true ? (
           <View
             style={{
