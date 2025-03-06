@@ -87,8 +87,8 @@ const PatientCard: React.FC<PatientCardProps> = ({
           {" "}
           <View
             style={{
-              height: "80%",
-              width: "60%",
+              height: "85%",
+              width: "75%",
               backgroundColor: condition == "Critical" ? "#FFF3F3" : "#E5FEF6",
               borderWidth: 1,
               borderColor: condition == "Critical" ? "#FDDCDC" : "#B2EEDB",

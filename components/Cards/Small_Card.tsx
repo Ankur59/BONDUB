@@ -22,6 +22,7 @@ interface CardsProps {
   count: number;
   check?: boolean;
   warning?: string;
+  show_vacant?: boolean;
   //
   total_count?: number;
   used?: number;
@@ -41,6 +42,7 @@ const Small = ({
   warning,
   total_count,
   used,
+  show_vacant,
 }: CardsProps) => {
   const [vacant, setvacant] = useState<Number>();
   useEffect(() => {
@@ -64,10 +66,10 @@ const Small = ({
           <View style={Dash_styles.icons}>
             <View
               style={{
-                height: "80%",
-                width: "80%",
+                height: 30,
+                width: 30,
                 borderRadius: 6,
-                backgroundColor: "re",
+                backgroundColor: "rd",
                 borderWidth: 1,
                 alignItems: "center",
                 justifyContent: "center",
@@ -75,7 +77,7 @@ const Small = ({
               }}
             >
               {icons}
-            </View>
+            </View> 
           </View>
           <View style={Dash_styles.title_text}>
             <Text
@@ -83,7 +85,7 @@ const Small = ({
                 color: "#A1A1B0",
                 fontSize: 14,
                 fontWeight: 200,
-                marginLeft: "2%",
+                marginLeft: 5,
               }}
             >
               {heading}
@@ -98,7 +100,7 @@ const Small = ({
               backgroundColor: "#FFF",
               alignItems: "center",
               justifyContent: "center",
-              marginRight: "2%",
+              marginRight: 12,
               borderWidth: 1,
               borderColor: "#EBEBF1",
               borderRadius: 4,
@@ -119,7 +121,7 @@ const Small = ({
                 backgroundColor: "#FFF",
                 alignItems: "center",
                 justifyContent: "center",
-                marginRight: "2%",
+                marginRight: 12,
                 borderWidth: 1,
                 borderColor: "#EBEBF1",
                 borderRadius: 4,
@@ -352,7 +354,7 @@ const Small = ({
                 </View>
               </View>
             </View>
-            {vacant !== undefined && Number(vacant) > 0 && (
+            {show_vacant == true && (
               <View
                 style={{
                   height: "40%",
@@ -373,6 +375,7 @@ const Small = ({
                     alignItems: "center",
                     justifyContent: "center",
                     borderWidth: 1,
+
                     borderColor: "#C8E8DD",
                     borderRadius: 8,
                   }}
