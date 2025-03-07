@@ -92,8 +92,8 @@ const Dash_styles = StyleSheet.create({
   },
   title_text: {
     height: "100%",
-    width: "80%",
-    backgroundColor: "ble",
+    width: "89%",
+    backgroundColor: "bue",
     alignItems: "flex-start",
     justifyContent: "center",
     marginRight: "10%",

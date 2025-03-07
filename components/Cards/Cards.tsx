@@ -92,7 +92,7 @@ const Cards = ({
               bottom: 0,
             }}
           >
-            <Text style={{ fontSize: 60, marginLeft: "20%" }}>{count}</Text>
+            <Text style={{ fontSize: 40, marginLeft: "20%" }}>{count}</Text>
           </View>
         ) : (
           <View
@@ -165,7 +165,7 @@ const Cards = ({
                 <View
                   style={{
                     height: "100%",
-                    width: "25%",
+                    width: "27%",
 
                     backgroundColor: "rd",
                     justifyContent: "center",

@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import React, { useState, useEffect } from "react";
 import Dash_styles from "./Styles/Dashboard.style";
 import Fontisto from "@expo/vector-icons/Fontisto";
@@ -66,7 +66,7 @@ const Dashboard_comp = () => {
               height: "5%",
               width: "100%",
               backgroundColor: "yellw",
-              marginLeft: "7%",
+              marginLeft: "5%",
               justifyContent: "flex-end",
             }}
           >
@@ -74,15 +74,149 @@ const Dashboard_comp = () => {
               Hospital Overview
             </Text>
           </View>
-          <View style={{ height: "15%", backgroundColor: "rd", width: "100%" }}>
+          <View
+            style={{
+              height: "15%",
+              backgroundColor: "rd",
+              width: "100%",
+              flexDirection: "row",
+              alignItems: "flex-end",
+            }}
+          >
             <View
               style={{
-                height: "80%",
-                width: "96.7%",
-                backgroundColor: "pik",
+                height: "99%",
+                width: "94%",
+                backgroundColor: "pnk",
                 marginLeft: "3%",
+                flexDirection: "row",
+                alignItems: "center",
               }}
-            ></View>
+            >
+              <View
+                style={{
+                  height: 35,
+                  width: 35,
+                  position: "absolute",
+                  right: -5,
+                }}
+              >
+                <TouchableOpacity
+                  style={{
+                    height: "100%",
+                    width: "100%",
+                    position: "absolute",
+                    right: 0,
+                    backgroundColor: "white",
+                    borderRadius: 100,
+                    borderWidth: 1,
+                    borderColor: "#E6E6EA",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <AntDesign name="right" size={20} color="black" />
+                </TouchableOpacity>
+              </View>
+              <View
+                style={{
+                  height: 35,
+                  width: 35,
+                  position: "absolute",
+                  left: -5,
+                }}
+              >
+                <TouchableOpacity
+                  style={{
+                    height: "100%",
+                    width: "100%",
+                    backgroundColor: "white",
+                    borderRadius: 100,
+                    borderWidth: 1,
+                    borderColor: "#E6E6EA",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <AntDesign name="left" size={20} color="black" />
+                </TouchableOpacity>
+              </View>
+              <View style={{ height: "92%", width: "18.4%", marginLeft: "2%" }}>
+                <Small
+                  height={"100%"}
+                  width={"100%"}
+                  heading="General Ward"
+                  critical_count={count}
+                  type={3}
+                  noview={true}
+                  total_count={50}
+                  used={patients.length}
+                  source={Critical}
+                  show_vacant={false}
+                  count={doctors.length}
+                />
+              </View>
+              <View style={{ height: "92%", width: "18.4%", marginLeft: "1%" }}>
+                <Small
+                  height={"100%"}
+                  width={"100%"}
+                  heading="Male Ward"
+                  critical_count={count}
+                  type={3}
+                  noview={true}
+                  total_count={50}
+                  used={patients.length}
+                  source={Critical}
+                  show_vacant={false}
+                  count={doctors.length}
+                />
+              </View>{" "}
+              <View style={{ height: "92%", width: "18.4%", marginLeft: "1%" }}>
+                <Small
+                  height={"100%"}
+                  width={"100%"}
+                  heading="Female Ward"
+                  critical_count={count}
+                  type={3}
+                  noview={true}
+                  total_count={50}
+                  used={patients.length}
+                  source={Critical}
+                  show_vacant={false}
+                  count={doctors.length}
+                />
+              </View>{" "}
+              <View style={{ height: "92%", width: "18.4%", marginLeft: "1%" }}>
+                <Small
+                  height={"100%"}
+                  width={"100%"}
+                  heading="Isolation Ward"
+                  critical_count={count}
+                  type={3}
+                  noview={true}
+                  total_count={50}
+                  used={patients.length}
+                  source={Critical}
+                  show_vacant={false}
+                  count={doctors.length}
+                />
+              </View>{" "}
+              <View style={{ height: "92%", width: "18.4%", marginLeft: "1%" }}>
+                <Small
+                  height={"100%"}
+                  width={"100%"}
+                  heading="Special Room"
+                  critical_count={count}
+                  type={3}
+                  noview={true}
+                  total_count={50}
+                  used={patients.length}
+                  source={Critical}
+                  show_vacant={false}
+                  count={doctors.length}
+                />
+              </View>
+            </View>
           </View>
           <View
             style={{
@@ -252,7 +386,13 @@ const Dashboard_comp = () => {
                     height={"92%"}
                     width={"98%"}
                     heading="Beds"
-                    icons={<AntDesign name="bells" size={17} color="#A1A1B0" />}
+                    icons={
+                      <MaterialCommunityIcons
+                        name="bed-outline"
+                        size={17}
+                        color="#A1A1B0"
+                      />
+                    }
                     critical_count={count}
                     type={3}
                     total_count={50}
@@ -288,7 +428,9 @@ const Dashboard_comp = () => {
                       height={"92%"}
                       width={"100%"}
                       heading="Patients this week"
-                      icons={<AntDesign name="bells" size={17} color="black" />}
+                      icons={
+                        <AntDesign name="bells" size={17} color="#A1A1B0" />
+                      }
                       critical_count={count}
                       type={2}
                       check={check_ward()}
@@ -313,7 +455,11 @@ const Dashboard_comp = () => {
                       width={"100%"}
                       heading="Wards"
                       icons={
-                        <Fontisto name="stethoscope" size={17} color="black" />
+                        <MaterialCommunityIcons
+                          name="bed-outline"
+                          size={17}
+                          color="#A1A1B0"
+                        />
                       }
                       critical_count={count}
                       type={2}

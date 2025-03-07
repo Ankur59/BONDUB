@@ -15,7 +15,7 @@ interface CardsProps {
   height: DimensionValue;
   width: DimensionValue;
   heading: string;
-  icons: JSX.Element;
+  icons?: JSX.Element;
   critical_count: number;
   type: number;
   source: any[];
@@ -26,6 +26,7 @@ interface CardsProps {
   //
   total_count?: number;
   used?: number;
+  noview?: boolean;
   //
 }
 
@@ -43,6 +44,7 @@ const Small = ({
   total_count,
   used,
   show_vacant,
+  noview = false,
 }: CardsProps) => {
   const [vacant, setvacant] = useState<Number>();
   useEffect(() => {
@@ -50,7 +52,7 @@ const Small = ({
       const remain = total_count - used;
       setvacant(remain);
     }
-  }, [total_count, used]); // Remove `vacant` if not needed
+  }, [total_count, used]);
 
   return (
     <View
@@ -64,20 +66,22 @@ const Small = ({
       <View style={Dash_styles.card_heading2}>
         <View style={Dash_styles.Heading_icon2}>
           <View style={Dash_styles.icons}>
-            <View
-              style={{
-                height: 30,
-                width: 30,
-                borderRadius: 6,
-                backgroundColor: "rd",
-                borderWidth: 1,
-                alignItems: "center",
-                justifyContent: "center",
-                borderColor: "#E6E6EA",
-              }}
-            >
-              {icons}
-            </View> 
+            {icons ? (
+              <View
+                style={{
+                  height: 30,
+                  width: 30,
+                  borderRadius: 6,
+                  backgroundColor: "rd",
+                  borderWidth: 1,
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderColor: "#E6E6EA",
+                }}
+              >
+                {icons}
+              </View>
+            ) : null}
           </View>
           <View style={Dash_styles.title_text}>
             <Text
@@ -92,7 +96,7 @@ const Small = ({
             </Text>
           </View>
         </View>
-        {count > 0 && (
+        {count > 0 && noview == false && (
           <TouchableOpacity
             style={{
               height: 26,
@@ -294,7 +298,7 @@ const Small = ({
             <View
               style={{
                 height: "50%",
-                width: "20%",
+                width: show_vacant ? "20%" : "40%",
                 backgroundColor: "rd",
                 position: "absolute",
                 bottom: 10,
@@ -306,7 +310,9 @@ const Small = ({
                 style={{
                   height: "100%",
                   width: "55%",
+                  marginLeft: "10%",
                   backgroundColor: "yelow",
+                  marginRight: "1%",
                 }}
               >
                 <View
@@ -323,8 +329,9 @@ const Small = ({
                 >
                   <Text
                     style={{
-                      fontSize: 50,
-                      lineHeight: 40,
+                      fontSize: 40,
+                      lineHeight: 35,
+                      marginRight: "1%",
                     }}
                   >
                     {used}
@@ -335,7 +342,7 @@ const Small = ({
                 style={{
                   height: "100%",
                   width: "45%",
-                  backgroundColor: "white",
+                  backgroundColor: "whie",
                 }}
               >
                 <View
@@ -350,7 +357,9 @@ const Small = ({
                     justifyContent: "flex-end",
                   }}
                 >
-                  <Text style={{ fontSize: 20 }}>/50</Text>
+                  <Text style={{ fontSize: 18, color: "#66667A" }}>
+                    /{total_count}
+                  </Text>
                 </View>
               </View>
             </View>
@@ -369,8 +378,8 @@ const Small = ({
               >
                 <View
                   style={{
-                    height: "65%",
-                    width: "70%",
+                    height: "75%",
+                    width: "85%",
                     backgroundColor: "#E5FEF6",
                     alignItems: "center",
                     justifyContent: "center",
